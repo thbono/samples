@@ -68,17 +68,6 @@ public class AlunoController {
         return null;
     }
 
-    public void excluir(final Aluno aluno) {
-        try {
-            delegate.delete(aluno);
-
-            helper.addInfoMessage("Aluno excluido com sucesso");
-        } catch (Exception e) {
-            LOG.error(e.getMessage(), e);
-            helper.addErrorMessage("Falha ao excluir aluno, contate o administrador do sistema");
-        }
-    }
-
     public boolean isPossuiAlunos() {
         return alunos != null && !alunos.isEmpty();
     }
