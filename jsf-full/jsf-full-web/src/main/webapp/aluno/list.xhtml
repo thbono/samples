@@ -13,7 +13,7 @@
         <h:form>
             <h:panelGroup>
                 <h:commandButton value="Listar" action="#{alunoListController.listar}"/>
-                <h:commandButton value="Novo" action="edit?faces-redirect=true"/>
+                <h:button value="Novo" outcome="edit.xhtml"/>
                 <h:messages showSummary="false" showDetail="true" globalOnly="false"/>
                 <hr></hr>
             </h:panelGroup>

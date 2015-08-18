@@ -11,7 +11,7 @@
         <h2>Cadastro de alunos</h2>
         <h:form>
             <h:panelGroup>
-                <h:commandButton value="Voltar" action="list?faces-redirect=true" immediate="true"/>
+                <h:button value="Voltar" outcome="list.xhtml"/>
                 <h:commandButton value="Salvar" action="#{alunoEditController.salvar}"/>
                 <h:messages showSummary="false" showDetail="true" globalOnly="true"/>
                 <hr></hr>
