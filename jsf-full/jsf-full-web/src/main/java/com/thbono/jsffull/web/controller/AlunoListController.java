@@ -2,7 +2,6 @@ package com.thbono.jsffull.web.controller;
 
 import com.thbono.jsffull.app.AlunoDelegate;
 import com.thbono.jsffull.model.Aluno;
-import com.thbono.jsffull.web.dto.AlunoDto;
 import org.apache.log4j.Logger;
 
 import javax.annotation.PostConstruct;
@@ -18,13 +17,11 @@ import java.util.List;
  */
 @ManagedBean
 @RequestScoped
-public class AlunoController {
+public class AlunoListController {
 
-    private static final Logger LOG = Logger.getLogger(Aluno.class);
+    private static final Logger LOG = Logger.getLogger(AlunoListController.class);
 
     private List<Aluno> alunos;
-
-    private AlunoDto aluno;
 
     @Inject
     private AlunoDelegate delegate;
@@ -32,13 +29,12 @@ public class AlunoController {
     @Inject
     private ControllerHelper helper;
 
-    public AlunoController() {
+    public AlunoListController() {
     }
 
     @PostConstruct
     public void postConstruct() {
         alunos = Collections.emptyList();
-        aluno = new AlunoDto();
     }
 
     public void listar() {
@@ -46,26 +42,6 @@ public class AlunoController {
         if (!isPossuiAlunos()) {
             helper.addInfoMessage("Nenhum registro encontrado");
         }
-    }
-
-    public String salvar() {
-        try {
-            delegate.saveOrUpdate(Aluno.newBuilder()
-                    .withRa(aluno.getRa())
-                    .withNome(aluno.getNome())
-                    .build());
-
-            helper.addInfoMessage("Aluno salvo com sucesso");
-            return "list";
-        } catch (IllegalArgumentException | NullPointerException e ) {
-            LOG.warn(e.getMessage(), e);
-            helper.addWarnMessage(String.format("Dados inválidos (%s)", e.getMessage()));
-        } catch (Exception e) {
-            LOG.error(e.getMessage(), e);
-            helper.addErrorMessage("Falha ao salvar aluno, contate o administrador do sistema");
-        }
-
-        return null;
     }
 
     public boolean isPossuiAlunos() {
@@ -76,7 +52,4 @@ public class AlunoController {
         return alunos;
     }
 
-    public AlunoDto getAluno() {
-        return aluno;
-    }
 }

@@ -12,14 +12,14 @@
         <h2>Cadastro de alunos</h2>
         <h:form>
             <h:panelGroup>
-                <h:commandButton value="Listar" action="#{alunoController.listar}"/>
+                <h:commandButton value="Listar" action="#{alunoListController.listar}"/>
                 <h:commandButton value="Novo" action="edit?faces-redirect=true"/>
                 <h:messages showSummary="false" showDetail="true" globalOnly="false"/>
                 <hr></hr>
             </h:panelGroup>
 
-            <h:panelGroup rendered="#{alunoController.possuiAlunos}">
-                <h:dataTable value="#{alunoController.alunos}"
+            <h:panelGroup rendered="#{alunoListController.possuiAlunos}">
+                <h:dataTable value="#{alunoListController.alunos}"
                              var="aluno">
                     <h:column>
                         <f:facet name="header">RA</f:facet>

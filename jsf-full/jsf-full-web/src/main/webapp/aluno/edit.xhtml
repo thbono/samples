@@ -12,19 +12,19 @@
         <h:form>
             <h:panelGroup>
                 <h:commandButton value="Voltar" action="list?faces-redirect=true" immediate="true"/>
-                <h:commandButton value="Salvar" action="#{alunoController.salvar}"/>
+                <h:commandButton value="Salvar" action="#{alunoEditController.salvar}"/>
                 <h:messages showSummary="false" showDetail="true" globalOnly="true"/>
                 <hr></hr>
             </h:panelGroup>
 
             <h:panelGrid columns="3">
                 <h:outputLabel for="txtRa" value="RA"/>
-                <h:inputText id="txtRa" value="#{alunoController.aluno.ra}" maxlength="5"
+                <h:inputText id="txtRa" value="#{alunoEditController.aluno.ra}" maxlength="5"
                              converterMessage="O RA deve ser composto apenas por números"/>
                 <h:message for="txtRa"/>
 
                 <h:outputLabel for="txtNome" value="Nome"/>
-                <h:inputText id="txtNome" value="#{alunoController.aluno.nome}"/>
+                <h:inputText id="txtNome" value="#{alunoEditController.aluno.nome}"/>
                 <h:message for="txtNome"/>
             </h:panelGrid>
         </h:form>
