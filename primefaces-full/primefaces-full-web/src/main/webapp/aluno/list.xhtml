@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Cadastro de alunos</title>
+    </h:head>
+
+    <h:body>
+        <h2>Cadastro de alunos</h2>
+        <h:form>
+            <h:panelGroup>
+                <p:button value="Home" outcome="/index.xhtml"/>
+                <p:button value="Novo" outcome="/aluno/edit.xhtml?id=new"/>
+                <hr></hr>
+            </h:panelGroup>
+
+            <h:panelGroup rendered="#{!alunoListController.possuiAlunos}">
+                <h3>Nenhum aluno encontrado!</h3>
+            </h:panelGroup>
+
+            <h:panelGroup rendered="#{alunoListController.possuiAlunos}">
+                <p:dataTable value="#{alunoListController.alunos}" var="aluno">
+                    <p:column>
+                        <f:facet name="header">RA</f:facet>
+                        <p:link value="#{aluno.ra}" outcome="/aluno/edit.xhtml?id=#{aluno.id}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">Nome</f:facet>
+                        <p:link value="#{aluno.nome}" outcome="/aluno/edit.xhtml?id=#{aluno.id}"/>
+                    </p:column>
+                </p:dataTable>
+            </h:panelGroup>
+        </h:form>
+    </h:body>
+</html>
