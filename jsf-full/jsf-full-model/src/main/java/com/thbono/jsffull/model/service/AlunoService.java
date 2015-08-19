@@ -20,9 +20,14 @@ public class AlunoService {
     protected AlunoService() {
     }
 
-    public void saveOrUpdate(final Aluno aluno) {
+    public Long saveOrUpdate(final Aluno aluno) {
         Objects.requireNonNull(aluno, "Informe o aluno");
-        repository.saveOrUpdate(aluno);
+        return repository.saveOrUpdate(aluno);
+    }
+
+    public void remove(final Long id) {
+        Objects.requireNonNull(id, "Informe o id");
+        repository.remove(id);
     }
 
 }

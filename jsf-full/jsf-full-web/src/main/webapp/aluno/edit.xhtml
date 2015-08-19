@@ -11,16 +11,24 @@
         <h2>Cadastro de alunos</h2>
         <h:form>
             <h:panelGroup>
-                <h:button value="Voltar" outcome="list.xhtml"/>
+                <h:inputHidden value="#{alunoEditController.aluno.id}"/>
+                <h:button value="Lista" outcome="/aluno/list.xhtml"/>
+                <h:commandButton value="Excluir" action="#{alunoEditController.excluir}"
+                                 immediate="true" disabled="#{!alunoEditController.aluno.persistido}"/>
                 <h:commandButton value="Salvar" action="#{alunoEditController.salvar}"/>
                 <h:messages showSummary="false" showDetail="true" globalOnly="true"/>
                 <hr></hr>
             </h:panelGroup>
 
             <h:panelGrid columns="3">
+                <h:outputLabel for="txtId" value="Código" rendered="#{alunoEditController.aluno.persistido}"/>
+                <h:inputText id="txtId" value="#{alunoEditController.aluno.id}" disabled="true"
+                             rendered="#{alunoEditController.aluno.persistido}"/>
+                <h:message for="txtId" rendered="#{alunoEditController.aluno.persistido}"/>
+
                 <h:outputLabel for="txtRa" value="RA"/>
                 <h:inputText id="txtRa" value="#{alunoEditController.aluno.ra}" maxlength="5"
-                             converterMessage="O RA deve ser composto apenas por números"/>
+                             converterMessage="O RA deve conter apenas números"/>
                 <h:message for="txtRa"/>
 
                 <h:outputLabel for="txtNome" value="Nome"/>

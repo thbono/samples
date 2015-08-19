@@ -20,7 +20,7 @@ public class Aluno {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "RA", nullable = false)
+    @Column(name = "RA", nullable = false, unique = true)
     private Integer ra;
 
     @Column(name = "NOME", nullable = false, length = 100)
@@ -33,7 +33,8 @@ public class Aluno {
     protected Aluno() {
     }
 
-    public Aluno(final Integer ra, final String nome) {
+    public Aluno(final Long id, final Integer ra, final String nome) {
+        this.id = id;
         this.ra = Objects.requireNonNull(ra, "Informe o RA");
         this.nome = Objects.requireNonNull(nome, "Informe o nome");
 
@@ -46,6 +47,7 @@ public class Aluno {
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this)
+                .add("id", id)
                 .add("ra", ra)
                 .add("nome", nome)
                 .toString();
@@ -66,6 +68,14 @@ public class Aluno {
         return id != null ? id.hashCode() : 0;
     }
 
+    public boolean isPersistido() {
+        return id != null;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
     public Integer getRa() {
         return ra;
     }
@@ -75,10 +85,16 @@ public class Aluno {
     }
 
     public static class Builder {
+        private Long id;
         private Integer ra;
         private String nome;
 
         private Builder() {
+        }
+
+        public Builder withId(final Long id) {
+            this.id = id;
+            return this;
         }
 
         public Builder withRa(final Integer ra) {
@@ -92,7 +108,7 @@ public class Aluno {
         }
 
         public Aluno build() {
-            return new Aluno(ra, nome);
+            return new Aluno(id, ra, nome);
         }
     }
 

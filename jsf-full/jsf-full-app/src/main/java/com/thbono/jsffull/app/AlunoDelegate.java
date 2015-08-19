@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  * @author Tiago Bono
@@ -27,14 +28,26 @@ public class AlunoDelegate {
     }
 
     @Transactional(Transactional.TxType.SUPPORTS)
+    public Optional<Aluno> findOne(final Long id) {
+        Objects.requireNonNull(id, "Informe o id");
+        return repository.findOne(id);
+    }
+
+    @Transactional(Transactional.TxType.SUPPORTS)
     public List<Aluno> findAll() {
         return repository.findAll();
     }
 
     @Transactional(Transactional.TxType.REQUIRES_NEW)
-    public void saveOrUpdate(final Aluno aluno) {
+    public Long saveOrUpdate(final Aluno aluno) {
         Objects.requireNonNull(aluno, "Informe o aluno");
-        service.saveOrUpdate(aluno);
+        return service.saveOrUpdate(aluno);
+    }
+
+    @Transactional(Transactional.TxType.REQUIRES_NEW)
+    public void remove(final Long id) {
+        Objects.requireNonNull(id, "Informe o id");
+        service.remove(id);
     }
 
 }
