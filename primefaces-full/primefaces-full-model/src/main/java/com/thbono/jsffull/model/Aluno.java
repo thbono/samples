@@ -33,7 +33,7 @@ public class Aluno {
     protected Aluno() {
     }
 
-    public Aluno(final Long id, final Integer ra, final String nome) {
+    private Aluno(final Long id, final Integer ra, final String nome) {
         this.id = id;
         this.ra = Objects.requireNonNull(ra, "Informe o RA");
         this.nome = Objects.requireNonNull(nome, "Informe o nome");
