@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <title>JMS Test</title>
+</h:head>
+<h:body>
+    <h:form>
+        <p:button outcome="hello" rendered="#{helloBean.finished}" value="Back"/>
+
+        <hr/>
+
+        <p:dataTable var="notification" value="#{helloBean.notifications}" paginator="true" rows="100">
+            <p:column headerText="Message">
+                <h:outputText value="#{notification.message}" />
+            </p:column>
+
+            <p:column headerText="Sent">
+                <h:outputText value="#{notification.sent}">
+                    <f:convertDateTime pattern="dd/MM/yy HH:mm:ss:SSSS"/>
+                </h:outputText>
+            </p:column>
+
+            <p:column headerText="Delivered">
+                <h:outputText value="#{notification.delivered}">
+                    <f:convertDateTime pattern="dd/MM/yy HH:mm:ss:SSSS"/>
+                </h:outputText>
+            </p:column>
+        </p:dataTable>
+    </h:form>
+</h:body>
+</html>
